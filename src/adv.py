@@ -1,5 +1,5 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
 
 room = {
@@ -37,29 +37,27 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = {
-    'room': room['outside']
-}
+player = Player(room['outside'])
+
 # Write a loop that:
 #
 while True:
     # * Prints the current room name
-    print(player['room'].name)
+    print(player.room.name)
     # * Prints the current description (the textwrap module might be useful here).
-    print(player['room'].description)
+    print(player.room.description)
     # * Waits for user input and decides what to do.
     #
     action = input('pick a direction: ')
     # If the user enters a cardinal direction, attempt to move to the room there.
-    if action == 'n' and player['room'].has_key('n_to'):
-        print(player['room'].n_to)
-        player['room'] = player['room'].n_to
-    elif action == 'e' and player['room'].has_key('e_to'):
-        player['room'] = player['room'].e_to
-    elif action == 's' and player['room'].has_key('s_to'):
-        player['room'] = player['room'].s_to
-    elif action == 'w' and player['room'].has_key('w_to'):
-        player['room'] = player['room'].w_to
+    if action == 'n' and player.room.has_key('n_to'):
+        player.room = player.room.n_to
+    elif action == 'e' and player.room.has_key('e_to'):
+        player.room = player.room.e_to
+    elif action == 's' and player.room.has_key('s_to'):
+        player.room = player.room.s_to
+    elif action == 'w' and player.room.has_key('w_to'):
+        player.room = player.room.w_to
     # Print an error message if the movement isn't allowed.
     #
     # If the user enters "q", quit the game.
