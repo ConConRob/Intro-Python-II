@@ -46,3 +46,11 @@ class Player:
 
         if dropped == False:
             print(f'You dont have a "{item}" to drop.')
+
+    def show_inventory(self):
+        if len(self.items) > 0:
+            print('You are holding:')
+            for item in self.items:
+                print(f'  - {item}')
+        else:
+            print('You are not holding anything.')

@@ -75,6 +75,9 @@ while True:
             # Print an error message if the movement isn't allowed.
             if(did_move == False):
                 print('That movement is not allowed, try again.')
+        # show invetory
+        elif action == 'i':
+            player.show_inventory()
         #
         # If the user enters "q", quit the game.
         elif action == 'q':
@@ -92,7 +95,7 @@ while True:
             else:
                 print(f'{actions[1]} does not exist in this room.')
         # check if drop
-        if actions[0] == 'drop':
+        elif actions[0] == 'drop':
             removed_item = player.drop_item(actions[1])
         else:
             print('You are not speaking the games language, try again.')
