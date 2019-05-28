@@ -29,3 +29,4 @@ class Player:
 
     def add_item(self, item):
         self.items.append(item)
+        item.on_take()

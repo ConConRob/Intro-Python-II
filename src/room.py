@@ -20,6 +20,7 @@ class Room:
             if itemDic.name == item:
                 # true -> remove item from the items and return true
                 self.items.remove(itemDic)
-                return True
+                # return the item
+                return itemDic
         # false -> return false
         return False

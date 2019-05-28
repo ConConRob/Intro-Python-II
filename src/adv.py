@@ -85,5 +85,13 @@ while True:
     # two word actions
     elif len(actions) == 2:
         if actions[0] == 'take' or actions[0] == 'get':
-            did_remove = player.current_room.take_item(actions[1])
-            print(did_remove)
+            removed_item = player.current_room.take_item(actions[1])
+            if removed_item:
+                # add the item to the player
+                player.add_item(removed_item)
+            else:
+                print(f'{actions[1]} does not exist in this room.')
+        else:
+            print('You are not speaking the games language, try again.')
+    else:
+        print('You are not speaking the games language, try again.')
