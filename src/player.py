@@ -30,3 +30,19 @@ class Player:
     def add_item(self, item):
         self.items.append(item)
         item.on_take()
+
+    def drop_item(self, item):
+        dropped = False
+        # check if the room has the item
+        for itemDic in self.items:
+            if itemDic.name == item:
+                # true -> remove item from the items and return true
+                self.items.remove(itemDic)
+                # put the item in the current room
+                self.current_room.drop_item(itemDic)
+                # run drop method
+                itemDic.on_drop()
+                dropped = True
+
+        if dropped == False:
+            print(f'You dont have a "{item}" to drop.')

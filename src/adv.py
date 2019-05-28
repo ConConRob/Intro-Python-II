@@ -91,6 +91,9 @@ while True:
                 player.add_item(removed_item)
             else:
                 print(f'{actions[1]} does not exist in this room.')
+        # check if drop
+        if actions[0] == 'drop':
+            removed_item = player.drop_item(actions[1])
         else:
             print('You are not speaking the games language, try again.')
     else:

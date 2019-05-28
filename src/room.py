@@ -14,6 +14,9 @@ class Room:
     def has_key(self, k):
         return f'{k}_to' in self.__dict__
 
+    def drop_item(self, item):
+        self.items.append(item)
+
     def take_item(self, item):
          # check if the room has the item
         for itemDic in self.items:
