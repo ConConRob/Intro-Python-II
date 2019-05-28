@@ -57,25 +57,28 @@ while True:
             print(f'  - {item}')
     # * Waits for user input and decides what to do.
     #
-    action = input('Pick a direction: ')
-    # If the user enters a cardinal direction, attempt to move to the room there.
-    # if action == 'n' and player.current_room.has_key('n'):
-    #     player.current_room = player.current_room.n_to
-    # elif action == 'e' and player.current_room.has_key('e'):
-    #     player.current_room = player.current_room.e_to
-    # elif action == 's' and player.current_room.has_key('s'):
-    #     player.current_room = player.current_room.s_to
-    # elif action == 'w' and player.current_room.has_key('w'):
-    #     player.current_room = player.current_room.w_to
-    if action == 'n' or action == 'e' or action == 's' or action == 'w':
-        did_move = player.move(action)
-        # Print an error message if the movement isn't allowed.
-        if(did_move == False):
-            print('That movement is not allowed, try again.')
-    #
-    # If the user enters "q", quit the game.
-    elif action == 'q':
-        print("Thanks for playing")
-        break
-    else:
-        print(f'"{action}" was not a valid input, try again.')
+    actions = input('Pick a direction: ').split(' ')
+    # len of one actions
+    if len(actions) == 1:
+        action = actions[0]
+        # If the user enters a cardinal direction, attempt to move to the room there.
+        # if action == 'n' and player.current_room.has_key('n'):
+        #     player.current_room = player.current_room.n_to
+        # elif action == 'e' and player.current_room.has_key('e'):
+        #     player.current_room = player.current_room.e_to
+        # elif action == 's' and player.current_room.has_key('s'):
+        #     player.current_room = player.current_room.s_to
+        # elif action == 'w' and player.current_room.has_key('w'):
+        #     player.current_room = player.current_room.w_to
+        if action == 'n' or action == 'e' or action == 's' or action == 'w':
+            did_move = player.move(action)
+            # Print an error message if the movement isn't allowed.
+            if(did_move == False):
+                print('That movement is not allowed, try again.')
+        #
+        # If the user enters "q", quit the game.
+        elif action == 'q':
+            print("Thanks for playing")
+            break
+        else:
+            print(f'"{action}" was not a valid input, try again.')

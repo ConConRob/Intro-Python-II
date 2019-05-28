@@ -13,3 +13,12 @@ class Room:
 
     def has_key(self, k):
         return f'{k}_to' in self.__dict__
+
+    def take_item(self, item):
+        # check if the room has the item
+        if item in self.items:
+            self.items.remove(item)
+            return True
+        # true -> remove item from the items and return true
+        return False
+        # false -> return false
