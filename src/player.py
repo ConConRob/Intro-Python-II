@@ -3,9 +3,7 @@
 
 
 class Player:
-    pass
     # set the init value
-
     def __init__(self, name, current_room):
         self.current_room = current_room
         self.name = name
@@ -16,10 +14,9 @@ class Player:
 
     def __setitem__(self, key, value):
         self[key] = value
+
     # moving method
-
     def move(self, direction):
-
         # checks if can move in that direction
         if self.current_room.has_key(direction):
             # moves in that direction
