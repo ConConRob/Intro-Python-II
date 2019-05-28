@@ -1,9 +1,13 @@
 from room import Room
 from player import Player
+from item import Item
+# Declare all the items
+knife = Item('Knife', 'A blunt butcher\'s knife')
+
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance", "North of you, the cave mount beckons"),
+    'outside':  Room("Outside Cave Entrance", "North of you, the cave mount beckons", [knife]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -46,6 +50,11 @@ while True:
     print(f'\n{player.current_room.name}')
     # * Prints the current description (the textwrap module might be useful here).
     print(player.current_room.description)
+    # if the room has items print them
+    if(len(player.current_room.items) > 0):
+        print(f'This room has the following items')
+        for item in player.current_room.items:
+            print(f'  - {item}')
     # * Waits for user input and decides what to do.
     #
     action = input('Pick a direction: ')
