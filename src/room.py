@@ -7,5 +7,8 @@ class Room:
         self.name = name
         self.description = description
 
+    def __getitem__(self, key):
+        return getattr(self, key)
+
     def has_key(self, k):
-        return k in self.__dict__
+        return f'{k}_to' in self.__dict__

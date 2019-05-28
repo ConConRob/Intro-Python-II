@@ -37,32 +37,36 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player(room['outside'])
+player = Player('Lukasz', room['outside'])
 
 # Write a loop that:
 #
 while True:
     # * Prints the current room name
-    print(player.room.name)
+    print(f'\n{player.current_room.name}')
     # * Prints the current description (the textwrap module might be useful here).
-    print(player.room.description)
+    print(player.current_room.description)
     # * Waits for user input and decides what to do.
     #
-    action = input('pick a direction: ')
+    action = input('Pick a direction: ')
     # If the user enters a cardinal direction, attempt to move to the room there.
-    if action == 'n' and player.room.has_key('n_to'):
-        player.room = player.room.n_to
-    elif action == 'e' and player.room.has_key('e_to'):
-        player.room = player.room.e_to
-    elif action == 's' and player.room.has_key('s_to'):
-        player.room = player.room.s_to
-    elif action == 'w' and player.room.has_key('w_to'):
-        player.room = player.room.w_to
-    # Print an error message if the movement isn't allowed.
+    # if action == 'n' and player.current_room.has_key('n'):
+    #     player.current_room = player.current_room.n_to
+    # elif action == 'e' and player.current_room.has_key('e'):
+    #     player.current_room = player.current_room.e_to
+    # elif action == 's' and player.current_room.has_key('s'):
+    #     player.current_room = player.current_room.s_to
+    # elif action == 'w' and player.current_room.has_key('w'):
+    #     player.current_room = player.current_room.w_to
+    if action == 'n' or action == 'e' or action == 's' or action == 'w':
+        did_move = player.move(action)
+        # Print an error message if the movement isn't allowed.
+        if(did_move == False):
+            print('That movement is not allowed, try again.')
     #
     # If the user enters "q", quit the game.
     elif action == 'q':
         print("Thanks for playing")
         break
     else:
-        print('That movement is not allowed, try again.')
+        print(f'"{action}" was not a valid input, try again.')
