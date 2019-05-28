@@ -4,10 +4,10 @@
 
 class Player:
     # set the init value
-    def __init__(self, name, current_room):
+    def __init__(self, name, current_room, items=[]):
         self.current_room = current_room
         self.name = name
-        self.items = []
+        self.items = items
 
     def __getitem__(self, key):
         return getattr(self, key)
@@ -25,3 +25,7 @@ class Player:
             return True
         # return that the move was not possible
         return False
+    # add a item to the player
+
+    def add_item(self, item):
+        self.items.append(item)
