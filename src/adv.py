@@ -58,7 +58,7 @@ while True:
     # * Waits for user input and decides what to do.
     #
     actions = input('Pick a direction: ').split(' ')
-    # len of one actions
+    # one word actions
     if len(actions) == 1:
         action = actions[0]
         # If the user enters a cardinal direction, attempt to move to the room there.
@@ -82,3 +82,8 @@ while True:
             break
         else:
             print(f'"{action}" was not a valid input, try again.')
+    # two word actions
+    elif len(actions) == 2:
+        if actions[0] == 'take' or actions[0] == 'get':
+            did_remove = player.current_room.take_item(actions[1])
+            print(did_remove)

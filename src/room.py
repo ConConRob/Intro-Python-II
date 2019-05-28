@@ -15,10 +15,11 @@ class Room:
         return f'{k}_to' in self.__dict__
 
     def take_item(self, item):
-        # check if the room has the item
-        if item in self.items:
-            self.items.remove(item)
-            return True
-        # true -> remove item from the items and return true
-        return False
+         # check if the room has the item
+        for itemDic in self.items:
+            if itemDic.name == item:
+                # true -> remove item from the items and return true
+                self.items.remove(itemDic)
+                return True
         # false -> return false
+        return False
