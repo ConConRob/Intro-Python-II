@@ -4,10 +4,10 @@
 
 class Player:
     # set the init value
-    def __init__(self, name, current_room, items=[]):
+    def __init__(self, name, current_room, items):
         self.current_room = current_room
         self.name = name
-        self.items = items
+        self.items = items.copy()
 
     def __getitem__(self, key):
         return getattr(self, key)
@@ -34,14 +34,14 @@ class Player:
     def drop_item(self, item):
         dropped = False
         # check if the room has the item
-        for itemDic in self.items:
-            if itemDic.name == item:
+        for item_dic in self.items:
+            if item_dic.name == item:
                 # true -> remove item from the items and return true
-                self.items.remove(itemDic)
+                self.items.remove(item_dic)
                 # put the item in the current room
-                self.current_room.drop_item(itemDic)
+                self.current_room.drop_item(item_dic)
                 # run drop method
-                itemDic.on_drop()
+                item_dic.on_drop()
                 dropped = True
 
         if dropped == False:

@@ -19,11 +19,11 @@ class Room:
 
     def take_item(self, item):
          # check if the room has the item
-        for itemDic in self.items:
-            if itemDic.name == item:
+        for item_dic in self.items:
+            if item_dic.name == item:
                 # true -> remove item from the items and return true
-                self.items.remove(itemDic)
+                self.items.remove(item_dic)
                 # return the item
-                return itemDic
+                return item_dic
         # false -> return false
         return False
