@@ -2,7 +2,7 @@
 # description attributes.
 
 
-class Room:
+class Room():
     def __init__(self, name, description, items=[]):
         self.name = name
         self.description = description
@@ -10,6 +10,9 @@ class Room:
 
     def __getitem__(self, key):
         return getattr(self, key)
+
+    def set_item(self, index, value):
+        self.__setattr__(index, value)
 
     def has_key(self, k):
         return f'{k}_to' in self.__dict__

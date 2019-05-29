@@ -59,5 +59,5 @@ class Treasure(Item):
         super().on_take()
         # close the room in that direction
         if self.room_to_close:
-            room_to_close[direction] = None
-            print(take_text)
+            delattr(self.room_to_close, self.direction)
+            print(self.take_text)

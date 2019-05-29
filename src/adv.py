@@ -2,12 +2,15 @@ from room import Room
 from player import Player
 from item import Item
 from item import Tool
+from item import Treasure
 # Declare all the items
 knife = Item('Knife', 'A blunt butcher\'s knife')
 bow_and_arrow = Tool('Bow', 'A old but sturdy bow and arrow',
                      '''You find a rope near by and fasten it to the arrow. 
 Taking aim you fire the rope into a piece of wood on the far 
 side of the chasm and start to cross ''')
+gold_cup = Treasure('Cup', 'A small but very valuable gold cup',
+                    'You hear a creaking nose. I might not be able to return the way I came')
 
 # Declare all the rooms
 
@@ -29,11 +32,14 @@ to north. The smell of gold permeates the air.""", [bow_and_arrow]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", []),
+earlier adventurers. The only exit is to the south.""", [gold_cup]),
 }
 # Declare what items can be used with what room
 bow_and_arrow.use_with.append(room['overlook'])
 bow_and_arrow.use_with.append(room['exit'])
+
+gold_cup.room_to_close = room['foyer']
+gold_cup.direction = 's_to'
 
 # Link rooms together
 
