@@ -23,7 +23,7 @@ class Room():
     def take_item(self, item):
          # check if the room has the item
         for item_dic in self.items:
-            if item_dic.name == item:
+            if item_dic.name.lower() == item:
                 # true -> remove item from the items and return true
                 self.items.remove(item_dic)
                 # return the item

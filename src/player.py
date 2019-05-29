@@ -42,7 +42,7 @@ class Player:
         dropped = False
         # check if the room has the item
         for item_dic in self.items:
-            if item_dic.name == item:
+            if item_dic.name.lower() == item:
                 # true -> remove item from the items and return true
                 self.items.remove(item_dic)
                 # put the item in the current room
@@ -58,7 +58,7 @@ class Player:
         # check if you have the item
         has_item = False
         for item in self.items:
-            if item.name == item_name:
+            if item.name.lower() == item_name:
                 next_room = item.use_on_room(self.current_room)
                 if next_room:
                     self.current_room = next_room

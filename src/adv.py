@@ -74,7 +74,7 @@ while True:
             print(f'  - {item}')
     # * Waits for user input and decides what to do.
     #
-    actions = input(f'{line}\nPick a direction: ').split(' ')
+    actions = input(f'{line}\nPick a direction: ').lower().split(' ')
     # one word actions
     if len(actions) == 1:
         action = actions[0]
