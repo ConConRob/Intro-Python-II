@@ -44,3 +44,20 @@ class Tool(Item):
         else:
             # cannot use the item. print a message and return false
             print(f'{self.name} cannot be used in ${room.name}')
+
+# causes a room to be closed off when picked up
+
+
+class Treasure(Item):
+    def __init__(self, name, description, take_text, room_to_close=None, direction=None):
+        super().__init__(name, description)
+        self.take_text = take_text
+        self.room_to_close = room_to_close
+        self.direction = direction
+
+    def on_take(self):
+        super().on_take()
+        # close the room in that direction
+        if self.room_to_close:
+            room_to_close[direction] = None
+            print(take_text)
