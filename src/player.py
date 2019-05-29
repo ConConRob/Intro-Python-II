@@ -27,9 +27,16 @@ class Player:
         return False
     # add a item to the player
 
-    def add_item(self, item):
-        self.items.append(item)
-        item.on_take()
+    def take_item(self, item_name):
+        # remove the item from the room
+        item = self.current_room.take_item(item_name)
+        if item:
+             # add the item to the player
+            self.items.append(item)
+            item.on_take()
+        else:
+            # item was not found in the room
+            print(f'{item_name} does not exist in this room.')
 
     def drop_item(self, item):
         dropped = False

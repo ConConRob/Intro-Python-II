@@ -62,14 +62,6 @@ while True:
     if len(actions) == 1:
         action = actions[0]
         # If the user enters a cardinal direction, attempt to move to the room there.
-        # if action == 'n' and player.current_room.has_key('n'):
-        #     player.current_room = player.current_room.n_to
-        # elif action == 'e' and player.current_room.has_key('e'):
-        #     player.current_room = player.current_room.e_to
-        # elif action == 's' and player.current_room.has_key('s'):
-        #     player.current_room = player.current_room.s_to
-        # elif action == 'w' and player.current_room.has_key('w'):
-        #     player.current_room = player.current_room.w_to
         if action == 'n' or action == 'e' or action == 's' or action == 'w':
             did_move = player.move(action)
             # Print an error message if the movement isn't allowed.
@@ -88,14 +80,10 @@ while True:
     # two word actions
     elif len(actions) == 2:
         if actions[0] == 'take' or actions[0] == 'get':
-            removed_item = player.current_room.take_item(actions[1])
-            if removed_item:
-                # add the item to the player
-                player.add_item(removed_item)
-            else:
-                print(f'{actions[1]} does not exist in this room.')
+            player.take_item(actions[1])
         # check if drop
         elif actions[0] == 'drop':
+            # drop the item
             removed_item = player.drop_item(actions[1])
         else:
             print('You are not speaking the games language, try again.')
