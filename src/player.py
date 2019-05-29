@@ -52,7 +52,19 @@ class Player:
                 dropped = True
 
         if dropped == False:
-            print(f'You dont have a "{item}" to drop.')
+            print(f'You don\'t have a "{item}" to drop.')
+
+    def use_item(self, item_name):
+        # check if you have the item
+        has_item = False
+        for item in self.items:
+            if item.name == item_name:
+                next_room = item.use_on_room(self.current_room)
+                if next_room:
+                    self.current_room = next_room
+                has_item = True
+        if has_item == False:
+            print(f'You don\'t have a "{item_name}" to use.')
 
     def show_inventory(self):
         if len(self.items) > 0:

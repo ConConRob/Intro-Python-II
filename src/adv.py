@@ -4,29 +4,36 @@ from item import Item
 from item import Tool
 # Declare all the items
 knife = Item('Knife', 'A blunt butcher\'s knife')
-bow_and_arrow = Tool('Bow and Arrow', 'A old but sturdy bow and arrow',
-                     'You find a rope near by and fasten it to the arrow. Taking aim you fire the rope into a piece of wood on the far side of the chasm and start to cross ')
+bow_and_arrow = Tool('Bow', 'A old but sturdy bow and arrow',
+                     '''You find a rope near by and fasten it to the arrow. 
+Taking aim you fire the rope into a piece of wood on the far 
+side of the chasm and start to cross ''')
 
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance", "North of you, the cave mount beckons", [knife]),
+    'outside':  Room("Outside Cave Entrance", "North of you, the cave mount beckons", []),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", []),
+passages run north and east.""", [knife]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", []),
+the distance, but there does not appear to be a way to cross the chasm.""", []),
+
+    'exit': Room("A Winding Exit", """After crossing the chasm you find yourself finding a narrow passage that 
+appears to take you outside to safety """, []),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", []),
+to north. The smell of gold permeates the air.""", [bow_and_arrow]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""", []),
 }
 # Declare what items can be used with what room
+bow_and_arrow.use_with.append(room['overlook'])
+bow_and_arrow.use_with.append(room['exit'])
 
 # Link rooms together
 
@@ -88,6 +95,9 @@ while True:
         elif actions[0] == 'drop':
             # drop the item
             removed_item = player.drop_item(actions[1])
+        elif actions[0] == 'use':
+            # try to use the item
+            used = player.use_item(actions[1])
         else:
             print('You are not speaking the games language, try again.')
     else:

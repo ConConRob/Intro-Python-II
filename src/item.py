@@ -16,6 +16,10 @@ class Item:
     def on_drop(self):
         print(f'You have dropped {self.name}.')
 
+    def use_on_room(self):
+        print(f'You don\'t understand how to use {self.name}')
+        return False
+
 
 class Tool(Item):
     def __init__(self, name, description, use_text, use_with=None, ):
@@ -31,7 +35,12 @@ class Tool(Item):
         if room in self.use_with:
             # using the item, print text of it being used and return true
             print(f'{self.use_text}  in {room.name}')
-            return True
+            # return another location on the use_with
+            for a_room in self.use_with:
+                print(a_room)
+                print(room)
+                if a_room != room:
+                    return a_room
         else:
             # cannot use the item. print a message and return false
             print(f'{self.name} cannot be used in ${room.name}')
