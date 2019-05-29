@@ -1,8 +1,11 @@
 from room import Room
 from player import Player
 from item import Item
+from item import Tool
 # Declare all the items
 knife = Item('Knife', 'A blunt butcher\'s knife')
+bow_and_arrow = Tool('Bow and Arrow', 'A old but sturdy bow and arrow',
+                     'You find a rope near by and fasten it to the arrow. Taking aim you fire the rope into a piece of wood on the far side of the chasm and start to cross ')
 
 # Declare all the rooms
 
@@ -23,7 +26,7 @@ to north. The smell of gold permeates the air.""", []),
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""", []),
 }
-
+# Declare what items can be used with what room
 
 # Link rooms together
 
@@ -36,6 +39,7 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+line = '============================================'
 #
 # Main
 #
@@ -47,8 +51,8 @@ player = Player('Lukasz', room['outside'], [])
 #
 while True:
     # * Prints the current room name
-    print(f'\n{player.current_room.name}')
-    # * Prints the current description (the textwrap module might be useful here).
+    print(f'{line}\n{player.current_room.name}')
+    # * Prints the current description (the text wrap module might be useful here).
     print(player.current_room.description)
     # if the room has items print them
     if(len(player.current_room.items) > 0):
@@ -57,7 +61,7 @@ while True:
             print(f'  - {item}')
     # * Waits for user input and decides what to do.
     #
-    actions = input('Pick a direction: ').split(' ')
+    actions = input(f'{line}\nPick a direction: ').split(' ')
     # one word actions
     if len(actions) == 1:
         action = actions[0]
@@ -67,10 +71,9 @@ while True:
             # Print an error message if the movement isn't allowed.
             if(did_move == False):
                 print('That movement is not allowed, try again.')
-        # show invetory
+        # show inventory
         elif action == 'i':
             player.show_inventory()
-        #
         # If the user enters "q", quit the game.
         elif action == 'q':
             print("Thanks for playing")
