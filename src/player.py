@@ -7,7 +7,7 @@ class Player:
     def __init__(self, name, current_room, items):
         self.current_room = current_room
         self.name = name
-        self.items = items.copy()
+        self.items = items
 
     def __getitem__(self, key):
         return getattr(self, key)
