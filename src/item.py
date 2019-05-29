@@ -37,8 +37,6 @@ class Tool(Item):
             print(f'{self.use_text}  in {room.name}')
             # return another location on the use_with
             for a_room in self.use_with:
-                print(a_room)
-                print(room)
                 if a_room != room:
                     return a_room
         else:
@@ -59,5 +57,8 @@ class Treasure(Item):
         super().on_take()
         # close the room in that direction
         if self.room_to_close:
-            delattr(self.room_to_close, self.direction)
-            print(self.take_text)
+            try:
+                delattr(self.room_to_close, self.direction)
+                print(self.take_text)
+            except AttributeError:
+                c = True

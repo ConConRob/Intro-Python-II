@@ -24,8 +24,8 @@ passages run north and east.""", [knife]),
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there does not appear to be a way to cross the chasm.""", []),
 
-    'exit': Room("A Winding Exit", """After crossing the chasm you find yourself finding a narrow passage that 
-appears to take you outside to safety """, []),
+    'exit': Room("A Winding Exit", """After crossing the chasm you find yourself facing a narrow passage that 
+appears to take you outside to safety. I should go back and look for treasure before I leave """, []),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air.""", [bow_and_arrow]),
@@ -108,3 +108,11 @@ while True:
             print('You are not speaking the games language, try again.')
     else:
         print('You are not speaking the games language, try again.')
+    # CHECK IF THE PLAYER IS OUT WITH THE CUP
+    if(player.current_room == room['exit'] and gold_cup in player.items):
+        # print a win message
+        print('''You find yourself facing a narrow passage that
+takes you to safety. You escaped with the Gold Cup! 
+            YOU WIN!!!!!!!!!!!!!!!!!''')
+        # end the game
+        break
